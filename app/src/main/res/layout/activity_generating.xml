@@ -2,17 +2,75 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:background="#d4a819"
-    android:layout_height="match_parent"
     tools:context=".gui.GeneratingActivity">
 
     <TextView
-        android:id="@+id/flyingYou..."
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Flying you to the labyrinth..."
+        android:id="@+id/titleMessage"
+        android:layout_width="match_parent"
+        android:layout_height="106dp"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
+        android:text="@string/flyingYou"
+        android:textColor="#4E342E"
+        android:textSize="30sp"
+        app:autoSizeTextType="uniform"
+        app:fontFamily="@font/alegreya"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="100dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleMessage" />
+
+    <TextView
+        android:id="@+id/progressGenerating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="xx%"
+        android:textSize="50sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="348dp" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressGenerating">
+
+        <ImageView
+            android:id="@+id/greece"
+            android:layout_width="218dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/greece" />
+
+        <ImageView
+            android:id="@+id/labyrinth"
+            android:layout_width="200sp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/laybrinth" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
