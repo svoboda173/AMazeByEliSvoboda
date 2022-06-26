@@ -7,4 +7,88 @@
     android:background="#d4a819"
     tools:context=".gui.PlayAnimationActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/shortcutManual"
+            android:layout_width="match_parent"
+            android:layout_height="400sp"
+            android:text="Shortcut"
+            android:textSize="50sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="206dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="350dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/imageButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="61dp"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/map" />
+
+                <Button
+                    android:id="@+id/pause"
+                    android:layout_width="match_parent"
+                    android:layout_height="30sp"
+                    android:layout_weight="1"
+                    android:text="Pause"
+                    android:textSize="30sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <CheckedTextView
+                    android:id="@+id/revealMaze"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Reveal maze?"
+                    android:textSize="35sp" />
+
+                <CheckedTextView
+                    android:id="@+id/revealPath"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Reveal path out?"
+                    android:textSize="35sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/distanceFromMinotaur"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:gravity="center"
+            android:text="Distance from Minotaur:"
+            android:textSize="30sp" />
+
+        <ProgressBar
+            android:id="@+id/progressBar2"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="352dp"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_weight="2" />
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
