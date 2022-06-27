@@ -27,19 +27,17 @@ public class GeneratingActivity extends AppCompatActivity {
         int progress = 0;
         generationProgress.setMax(100);
         new Thread(new Runnable() {
-            @Override
             public void run() {
                 while (progressStatus < 100) {
                     progressStatus = doWork();
                     handler.post(new Runnable() {
-                        @Override
                         public void run() {
                             generationProgress.setProgress(progressStatus);
-                            progressGeneration.setText(progressStatus);
+                            progressGeneration.setText(progressStatus + " %");
                         }
                     });
                 }
-                Intent intent = new Intent(GeneratingActivity.this, GeneratingActivity.class);
+                Intent intent = new Intent(GeneratingActivity.this, PlayManuallyActivity.class);
                 startActivity(intent);
             }
         }).start();
@@ -47,7 +45,7 @@ public class GeneratingActivity extends AppCompatActivity {
 
     private int doWork() {
         try {
-            Thread.sleep(50);
+            Thread.sleep(20);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

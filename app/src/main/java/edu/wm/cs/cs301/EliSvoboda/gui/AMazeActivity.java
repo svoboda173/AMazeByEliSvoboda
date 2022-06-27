@@ -16,6 +16,9 @@ import edu.wm.cs.cs301.EliSvoboda.R;
 
 public class AMazeActivity extends AppCompatActivity {
 
+    boolean includeRooms = false;
+    int currentLevel = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,9 +29,6 @@ public class AMazeActivity extends AppCompatActivity {
         Spinner generationSpinner = findViewById(R.id.generationSpinner);
         Spinner modeSpinner = findViewById(R.id.modeSpinner);
         Button retryButton = findViewById(R.id.retryButton);
-
-        boolean includeRooms = false;
-        int currentLevel = 0;
 
 
 
@@ -61,7 +61,16 @@ public class AMazeActivity extends AppCompatActivity {
 
     }
 
-    public void roomsClicked() {
-
+    public void roomsClicked(View view) {
+        boolean checked = ((CheckBox) view).isChecked();
+        if (checked) {
+            includeRooms = true;
+            Log.v("AMazeActivity", "You enabled room generation");
+            Toast.makeText(AMazeActivity.this, "You enabled room generation", Toast.LENGTH_SHORT).show();
+        } else {
+            includeRooms = false;
+            Log.v("AMazeActivity", "You disabled room generation");
+            Toast.makeText(AMazeActivity.this, "You disabled room generation", Toast.LENGTH_SHORT).show();
+        }
     }
 }
