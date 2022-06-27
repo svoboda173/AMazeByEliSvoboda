@@ -3,5 +3,14 @@
     <string name= "titleMessage">Escape from the LABYRINTH!</string>
     <string name= "flyingYou">Flying you to the Labyrinth...</string>
     <string name= "shortCutGeneration">Shortcut</string>
-    <string name= "kruskal">Kruskal</string>
+    <string-array name= "generation_array">
+        <item>Kruskal </item>
+        <item>Prim</item>
+        <item>DFS</item>
+    </string-array>
+    <string-array name= "mode_array">
+    <item>Manual </item>
+    <item>Wall Follower</item>
+    <item>Wizard</item>
+</string-array>
 </resources>

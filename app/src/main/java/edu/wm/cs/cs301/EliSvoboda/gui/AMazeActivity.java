@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.SeekBar;
@@ -14,7 +16,7 @@ import android.widget.Toast;
 
 import edu.wm.cs.cs301.EliSvoboda.R;
 
-public class AMazeActivity extends AppCompatActivity {
+public class AMazeActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     boolean includeRooms = false;
     int currentLevel = 0;
@@ -30,11 +32,36 @@ public class AMazeActivity extends AppCompatActivity {
         Spinner modeSpinner = findViewById(R.id.modeSpinner);
         Button retryButton = findViewById(R.id.retryButton);
 
+        modeSpinner.setOnItemSelectedListener(this);
+        generationSpinner.setOnItemSelectedListener(this);
 
-
+        /**
+         * when Retry button is clicked, switch activities and bundle important info
+         */
+        retryButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(AMazeActivity.this, GeneratingActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putBoolean("includeRooms", includeRooms);
+                bundle.putInt("currentLevel", currentLevel);
+                bundle.putString("generation", generationSpinner.getSelectedItem().toString());
+                bundle.putString("mode", modeSpinner.getSelectedItem().toString());
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
+        /**
+         * when Escape button is clicked, switch activities and bundle important info
+         */
         escapeButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(AMazeActivity.this, GeneratingActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putBoolean("includeRooms", includeRooms);
+                bundle.putInt("currentLevel", currentLevel);
+                bundle.putString("generation", generationSpinner.getSelectedItem().toString());
+                bundle.putString("mode", modeSpinner.getSelectedItem().toString());
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
@@ -59,8 +86,20 @@ public class AMazeActivity extends AppCompatActivity {
             }
         });
 
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.generation_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        generationSpinner.setAdapter(adapter);
+
+
+        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.mode_array, android.R.layout.simple_spinner_item);
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        modeSpinner.setAdapter(adapter2);
+
     }
 
+    /**
+     * Remember whether or not rooms should be used during generation
+     */
     public void roomsClicked(View view) {
         boolean checked = ((CheckBox) view).isChecked();
         if (checked) {
@@ -72,5 +111,15 @@ public class AMazeActivity extends AppCompatActivity {
             Log.v("AMazeActivity", "You disabled room generation");
             Toast.makeText(AMazeActivity.this, "You disabled room generation", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        Log.v("AMazeActivity", "You changed your selection to " + adapterView.getItemAtPosition(i));
+        Toast.makeText(AMazeActivity.this, "You changed your selection to " + adapterView.getItemAtPosition(i), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
     }
 }

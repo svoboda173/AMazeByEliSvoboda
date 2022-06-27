@@ -43,6 +43,9 @@ public class GeneratingActivity extends AppCompatActivity {
         }).start();
     }
 
+    /**
+     * Increment progress for simulated progress bar
+     */
     private int doWork() {
         try {
             Thread.sleep(20);
