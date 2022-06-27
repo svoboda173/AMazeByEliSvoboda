@@ -44,6 +44,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:onClick="revealMazeClicked"
                     android:text="Reveal maze?"
                     android:textSize="35sp" />
 
@@ -52,6 +53,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:onClick="revealPathClicked"
                     android:text="Reveal path out?"
                     android:textSize="35sp" />
             </LinearLayout>

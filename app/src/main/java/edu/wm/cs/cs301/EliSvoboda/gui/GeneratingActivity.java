@@ -12,9 +12,13 @@ import edu.wm.cs.cs301.EliSvoboda.R;
 
 public class GeneratingActivity extends AppCompatActivity {
 
-    private static int progress;
     private Handler handler = new Handler();
     private int progressStatus = 0; //Method adopted from http://www.java2s.com/Code/Android/UI/UsingThreadandProgressbar.htm
+    boolean includeRooms;
+    int currentLevel;
+    String generation;
+    String mode;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +28,12 @@ public class GeneratingActivity extends AppCompatActivity {
         ProgressBar generationProgress = findViewById(R.id.progressBar);
         TextView progressGeneration = findViewById(R.id.progressGenerating);
 
-        int progress = 0;
+        Bundle b = getIntent().getExtras();
+        includeRooms = b.getBoolean("includeRooms");
+        currentLevel = b.getInt("currentLevel");
+        generation = b.getString("generation");
+        mode = b.getString("mode");
+
         generationProgress.setMax(100);
         new Thread(new Runnable() {
             public void run() {
@@ -37,8 +46,13 @@ public class GeneratingActivity extends AppCompatActivity {
                         }
                     });
                 }
-                Intent intent = new Intent(GeneratingActivity.this, PlayManuallyActivity.class);
+                if (mode.equals("Manual")) {
+                    intent = new Intent(GeneratingActivity.this, PlayManuallyActivity.class);
+                } else {
+                    intent = new Intent(GeneratingActivity.this, PlayAnimationActivity.class);
+                }
                 startActivity(intent);
+                finish();
             }
         }).start();
     }

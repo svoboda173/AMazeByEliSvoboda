@@ -60,11 +60,13 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Reveal maze?"
+                    android:onClick="revealMazeClicked"
                     android:textSize="35sp" />
 
                 <CheckedTextView
                     android:id="@+id/revealPath"
                     android:layout_width="match_parent"
+                    android:onClick="revealPathClicked"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Reveal path out?"
