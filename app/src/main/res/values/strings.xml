@@ -2,5 +2,6 @@
     <string name="app_name">AMazeByEliSvoboda</string>
     <string name= "titleMessage">Escape from the LABYRINTH!</string>
     <string name= "flyingYou">Flying you to the Labyrinth...</string>
+    <string name= "shortCutGeneration">Shortcut to labyrinth</string>
     <string name= "kruskal">Kruskal</string>
 </resources>
