@@ -8,6 +8,8 @@ import android.widget.TextView;
 import edu.wm.cs.cs301.EliSvoboda.R;
 
 public class FinishActivity extends AppCompatActivity {
+    int stepsTaken;
+    int distFromMinotaur;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,5 +18,12 @@ public class FinishActivity extends AppCompatActivity {
 
         TextView minotaurDist = findViewById(R.id.MinotaurDist);
         TextView journeyLength = findViewById(R.id.JourneyLength);
+
+        Bundle b = getIntent().getExtras();
+        stepsTaken = b.getInt("stepsTaken");
+        distFromMinotaur = b.getInt("distFromMinotaur");
+
+        minotaurDist.setText(distFromMinotaur + " meters");
+        journeyLength.setText(stepsTaken + " steps");
     }
 }

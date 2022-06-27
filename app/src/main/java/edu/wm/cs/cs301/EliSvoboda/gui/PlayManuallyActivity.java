@@ -19,7 +19,7 @@ public class PlayManuallyActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         int stepsTaken = 0;
-        int distFromMinotaur = 2500;
+        int distFromMinotaur = 0;
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_manually);

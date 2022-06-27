@@ -17,7 +17,7 @@ import edu.wm.cs.cs301.EliSvoboda.R;
 
 public class PlayAnimationActivity extends AppCompatActivity {
     int stepsTaken = 0;
-    int distFromMinotaur = 2500;
+    int distFromMinotaur = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
