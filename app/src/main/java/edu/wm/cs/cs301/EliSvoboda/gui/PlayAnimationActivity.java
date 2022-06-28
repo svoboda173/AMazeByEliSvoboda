@@ -25,6 +25,7 @@ public class PlayAnimationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_play_animation);
 
         Button shortCut = findViewById(R.id.shortcutManual);
+        Button shortCutLoss = findViewById(R.id.shortcutLossManual);
         ImageButton map = findViewById(R.id.imageButton);
         CheckedTextView revealMaze = findViewById(R.id.revealMaze);
         CheckedTextView revealPath = findViewById(R.id.revealPath);
@@ -41,6 +42,24 @@ public class PlayAnimationActivity extends AppCompatActivity {
                 Bundle bundle = new Bundle();
                 bundle.putInt("stepsTaken", stepsTaken);
                 bundle.putInt("distFromMinotaur", distFromMinotaur);
+                bundle.putBoolean("escaped", true);
+                intent.putExtras(bundle);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        shortCutLoss.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             * Move to finish screen, sending relevant info about steps taken and distance from Minotaur (battery usage)
+             */
+            public void onClick(View v) {
+                Intent intent = new Intent(PlayAnimationActivity.this, FinishActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putInt("stepsTaken", stepsTaken);
+                bundle.putInt("distFromMinotaur", distFromMinotaur);
+                bundle.putBoolean("escape", false);
                 intent.putExtras(bundle);
                 startActivity(intent);
                 finish();

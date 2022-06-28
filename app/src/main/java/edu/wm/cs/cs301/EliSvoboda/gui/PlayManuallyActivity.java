@@ -42,6 +42,7 @@ public class PlayManuallyActivity extends AppCompatActivity {
                 Bundle bundle = new Bundle();
                 bundle.putInt("stepsTaken", stepsTaken);
                 bundle.putInt("distFromMinotaur", distFromMinotaur);
+                bundle.putBoolean("escaped", true);
                 intent.putExtras(bundle);
                 startActivity(intent);
                 finish();

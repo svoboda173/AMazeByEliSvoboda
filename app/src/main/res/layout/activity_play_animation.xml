@@ -15,8 +15,15 @@
         <Button
             android:id="@+id/shortcutManual"
             android:layout_width="match_parent"
-            android:layout_height="400sp"
-            android:text="Shortcut"
+            android:layout_height="194dp"
+            android:text="ShortcutWin"
+            android:textSize="50sp" />
+
+        <Button
+            android:id="@+id/shortcutLossManual"
+            android:layout_width="match_parent"
+            android:layout_height="166dp"
+            android:text="ShortcutLoss"
             android:textSize="50sp" />
 
         <LinearLayout
