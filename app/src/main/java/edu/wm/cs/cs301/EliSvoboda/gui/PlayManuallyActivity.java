@@ -28,7 +28,7 @@ public class PlayManuallyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_manually);
 
-        Button shortCut = findViewById(R.id.shortcutManual);
+//        Button shortCut = findViewById(R.id.shortcutManual);
         ImageButton map = findViewById(R.id.imageButton);
         CheckedTextView revealMaze = findViewById(R.id.revealMaze);
         CheckedTextView revealPath = findViewById(R.id.revealPath);
@@ -37,21 +37,21 @@ public class PlayManuallyActivity extends AppCompatActivity {
         Button lookLeft = findViewById(R.id.left);
         Button lookRight = findViewById(R.id.right);
 
-        shortCut.setOnClickListener(new View.OnClickListener() {
-            /**
-             * Move to finish screen, sending relevant info about steps taken and distance from Minotaur (battery usage)
-             */
-            public void onClick(View v) {
-                Intent intent = new Intent(PlayManuallyActivity.this, FinishActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putInt("stepsTaken", stepsTaken);
-                bundle.putInt("distFromMinotaur", distFromMinotaur);
-                bundle.putBoolean("escaped", true);
-                intent.putExtras(bundle);
-                startActivity(intent);
-                finish();
-            }
-        });
+//        shortCut.setOnClickListener(new View.OnClickListener() {
+//            /**
+//             * Move to finish screen, sending relevant info about steps taken and distance from Minotaur (battery usage)
+//             */
+//            public void onClick(View v) {
+//                Intent intent = new Intent(PlayManuallyActivity.this, FinishActivity.class);
+//                Bundle bundle = new Bundle();
+//                bundle.putInt("stepsTaken", stepsTaken);
+//                bundle.putInt("distFromMinotaur", distFromMinotaur);
+//                bundle.putBoolean("escaped", true);
+//                intent.putExtras(bundle);
+//                startActivity(intent);
+//                finish();
+//            }
+//        });
 
         map.setOnClickListener(new View.OnClickListener() {
             /**

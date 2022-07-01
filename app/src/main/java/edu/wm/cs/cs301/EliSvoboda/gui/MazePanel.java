@@ -1,6 +1,7 @@
 package edu.wm.cs.cs301.EliSvoboda.gui;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -8,17 +9,25 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.View;
 
+import edu.wm.cs.cs301.EliSvoboda.R;
+
 //StateAnimation and StateManual store a Canvas with a stored bitmap
 
 class MazePanel extends View implements P5Panel {
-
-    Paint paintbrush = new Paint(Paint.ANTI_ALIAS_FLAG);
-    Bitmap.Config conf = Bitmap.Config.ARGB_8888;
     private Bitmap bitmap;
     private Canvas canvas = new Canvas(bitmap);
+    private Paint paintbrush;
 
     public MazePanel(Context context, AttributeSet attrs) {
         super(context, attrs);
+        TypedArray a = context.getTheme().obtainStyledAttributes(
+                attrs,
+                R.styleable.MazePanel,
+                0, 0);
+
+        paintbrush = new Paint(Paint.ANTI_ALIAS_FLAG);
+        Bitmap.Config conf = Bitmap.Config.ARGB_8888;
+        a.recycle();
     }
 
     @Override

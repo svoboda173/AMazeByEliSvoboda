@@ -12,12 +12,10 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/shortcutManual"
+        <edu.wm.cs.cs301.EliSvoboda.gui.MazePanel
+            android:id="@+id/mazePanel"
             android:layout_width="match_parent"
-            android:layout_height="400sp"
-            android:text="Shortcut"
-            android:textSize="50sp" />
+            android:layout_height="400sp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
