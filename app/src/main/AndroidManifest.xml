@@ -21,18 +21,19 @@
             android:exported="false" />
         <activity
             android:name=".gui.PlayManuallyActivity"
-            android:exported="false" />
+            android:exported="true" > <!--Should be False!-->
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity
             android:name=".gui.GeneratingActivity"
             android:exported="false" />
         <activity
             android:name=".gui.AMazeActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

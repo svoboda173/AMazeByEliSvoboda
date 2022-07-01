@@ -21,6 +21,10 @@ public class PlayManuallyActivity extends AppCompatActivity {
         int stepsTaken = 0;
         int distFromMinotaur = 0;
 
+
+        //MazePanel panel = new MazePanel(PlayManuallyActivity.this, );
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_manually);
 

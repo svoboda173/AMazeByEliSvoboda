@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import edu.wm.cs.cs301.EliSvoboda.R;
 
 public class FinishActivity extends AppCompatActivity {
@@ -34,7 +32,7 @@ public class FinishActivity extends AppCompatActivity {
         if (!escaped) {
             successImage.setImageResource(R.drawable.defeat);
             victory.setText("DEFEAT...");
-            youEscaped.setText("The minotaur ate well tonight. Try again?");
+            youEscaped.setText("The Minotaur ate well tonight. Try again?");
         }
 
         minotaurDist.setText(distFromMinotaur + " meters");
