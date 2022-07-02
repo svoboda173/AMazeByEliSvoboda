@@ -2,7 +2,9 @@ package edu.wm.cs.cs301.EliSvoboda.gui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,12 +16,18 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.Random;
+
 import edu.wm.cs.cs301.EliSvoboda.R;
 
 public class AMazeActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
+    SharedPreferences sharedPref;
+    SharedPreferences.Editor editor;
+    Random rand;
     boolean includeRooms = false;
     int currentLevel = 0;
+    int seed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +39,9 @@ public class AMazeActivity extends AppCompatActivity implements AdapterView.OnIt
         Spinner generationSpinner = findViewById(R.id.generationSpinner);
         Spinner modeSpinner = findViewById(R.id.modeSpinner);
         Button retryButton = findViewById(R.id.retryButton);
+        sharedPref = AMazeActivity.this.getPreferences(Context.MODE_PRIVATE);
+        editor = sharedPref.edit();
+        rand = new Random();
 
         modeSpinner.setOnItemSelectedListener(this);
         generationSpinner.setOnItemSelectedListener(this);
@@ -42,10 +53,30 @@ public class AMazeActivity extends AppCompatActivity implements AdapterView.OnIt
             public void onClick(View v) {
                 Intent intent = new Intent(AMazeActivity.this, GeneratingActivity.class);
                 Bundle bundle = new Bundle();
+
+                int encoded = includeRooms ? 1 : 0;
+                switch (generationSpinner.getSelectedItem().toString()) {
+                    case "Kruskal":
+                        break;
+                    case "Prim":
+                        encoded += 10;
+                        break;
+                    case "DFS":
+                        encoded += 20;
+                        break;
+                }
+                encoded += 100 * currentLevel;
+
+                seed = sharedPref.getInt(String.valueOf(encoded), rand.nextInt());
+
+                editor.putInt(String.valueOf(encoded), seed);
+                editor.apply();
+
                 bundle.putBoolean("includeRooms", includeRooms);
                 bundle.putInt("currentLevel", currentLevel);
                 bundle.putString("generation", generationSpinner.getSelectedItem().toString());
                 bundle.putString("mode", modeSpinner.getSelectedItem().toString());
+                bundle.putInt("seed", seed);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
@@ -57,8 +88,26 @@ public class AMazeActivity extends AppCompatActivity implements AdapterView.OnIt
             public void onClick(View v) {
                 Intent intent = new Intent(AMazeActivity.this, GeneratingActivity.class);
                 Bundle bundle = new Bundle();
+
+                seed = rand.nextInt();
+                int encoded = includeRooms ? 1 : 0;
+                switch (generationSpinner.getSelectedItem().toString()) {
+                    case "Kruskal":
+                        break;
+                    case "Prim":
+                        encoded += 10;
+                        break;
+                    case "DFS":
+                        encoded += 20;
+                        break;
+                }
+                encoded += 100 * currentLevel;
+                editor.putInt(String.valueOf(encoded), seed);
+                editor.apply();
+
                 bundle.putBoolean("includeRooms", includeRooms);
                 bundle.putInt("currentLevel", currentLevel);
+                bundle.putInt("seed", seed);
                 bundle.putString("generation", generationSpinner.getSelectedItem().toString());
                 bundle.putString("mode", modeSpinner.getSelectedItem().toString());
                 intent.putExtras(bundle);

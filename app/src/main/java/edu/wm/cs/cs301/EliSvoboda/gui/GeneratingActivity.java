@@ -16,6 +16,7 @@ public class GeneratingActivity extends AppCompatActivity {
     private int progressStatus = 0; //Method adopted from http://www.java2s.com/Code/Android/UI/UsingThreadandProgressbar.htm
     boolean includeRooms;
     int currentLevel;
+    int seed;
     String generation;
     String mode;
     Intent intent;
@@ -29,6 +30,7 @@ public class GeneratingActivity extends AppCompatActivity {
         TextView progressGeneration = findViewById(R.id.progressGenerating);
 
         Bundle b = getIntent().getExtras();
+        seed = b.getInt("seed");
         includeRooms = b.getBoolean("includeRooms");
         currentLevel = b.getInt("currentLevel");
         generation = b.getString("generation");

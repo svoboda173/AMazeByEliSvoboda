@@ -13,9 +13,9 @@ import edu.wm.cs.cs301.EliSvoboda.R;
 
 //StateAnimation and StateManual store a Canvas with a stored bitmap
 
-class MazePanel extends View implements P5Panel {
+public class MazePanel extends View implements P5Panel {
     private Bitmap bitmap;
-    private Canvas canvas = new Canvas(bitmap);
+    private Canvas canvas;
     private Paint paintbrush;
 
     public MazePanel(Context context, AttributeSet attrs) {
@@ -27,12 +27,15 @@ class MazePanel extends View implements P5Panel {
 
         paintbrush = new Paint(Paint.ANTI_ALIAS_FLAG);
         Bitmap.Config conf = Bitmap.Config.ARGB_8888;
+
+        bitmap = Bitmap.createBitmap(Constants.VIEW_WIDTH, Constants.VIEW_HEIGHT, conf);
+        canvas = new Canvas(bitmap);
         a.recycle();
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        canvas.setBitmap(bitmap);
+        canvas.drawBitmap(bitmap, 0, 0, null);
     }
 
     @Override
@@ -71,17 +74,17 @@ class MazePanel extends View implements P5Panel {
 
     @Override
     public void addFilledPolygon(int[] xPoints, int[] yPoints, int nPoints) {
-
+        //TODO
     }
 
     @Override
     public void addPolygon(int[] xPoints, int[] yPoints, int nPoints) {
-
+        //TODO
     }
 
     @Override
     public void addLine(int startX, int startY, int endX, int endY) {
-
+        canvas.drawLine((float) startX, (float) startY,(float) endX, (float) endY, paintbrush);
     }
 
     @Override

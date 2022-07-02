@@ -21,14 +21,11 @@ public class PlayManuallyActivity extends AppCompatActivity {
         int stepsTaken = 0;
         int distFromMinotaur = 0;
 
-
-        //MazePanel panel = new MazePanel(PlayManuallyActivity.this, );
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_manually);
 
 //        Button shortCut = findViewById(R.id.shortcutManual);
+        MazePanel panel = findViewById(R.id.mazePanel);
         ImageButton map = findViewById(R.id.imageButton);
         CheckedTextView revealMaze = findViewById(R.id.revealMaze);
         CheckedTextView revealPath = findViewById(R.id.revealPath);
@@ -36,6 +33,9 @@ public class PlayManuallyActivity extends AppCompatActivity {
         Button jump = findViewById(R.id.jump);
         Button lookLeft = findViewById(R.id.left);
         Button lookRight = findViewById(R.id.right);
+
+        panel.addLine(0,100,1400,1000);
+        panel.commit();
 
 //        shortCut.setOnClickListener(new View.OnClickListener() {
 //            /**

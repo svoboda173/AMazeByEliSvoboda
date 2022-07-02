@@ -3,6 +3,10 @@
     <string name= "titleMessage">Escape from the LABYRINTH!</string>
     <string name= "flyingYou">Flying you to the Labyrinth...</string>
     <string name= "shortCutGeneration">Shortcut</string>
+    <string name = "lookLeft"> Look Left </string>
+    <string name = "lookRight"> Look Right </string>
+    <string name = "forward"> Forward </string>
+    <string name = "jump"> Jump </string>
     <string-array name= "generation_array">
         <item>Kruskal </item>
         <item>Prim</item>
