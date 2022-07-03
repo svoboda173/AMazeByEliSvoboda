@@ -5,11 +5,13 @@ import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.View;
 
 import edu.wm.cs.cs301.EliSvoboda.R;
+import edu.wm.cs.cs301.EliSvoboda.gui.ColorTheme.MazeColors;
 
 //StateAnimation and StateManual store a Canvas with a stored bitmap
 
@@ -46,8 +48,7 @@ public class MazePanel extends View implements P5Panel {
 
     @Override
     public boolean isOperational() {
-        //TODO
-        return false;
+        return (paintbrush != null && canvas != null);
     }
 
     @Override
@@ -62,7 +63,10 @@ public class MazePanel extends View implements P5Panel {
 
     @Override
     public void addBackground(float percentToExit) {
-        //TODO
+        setColor(ColorTheme.getColor(MazeColors.BACKGROUND_TOP,percentToExit).toArgb());
+        addFilledRectangle(0, 0, Constants.VIEW_WIDTH, Constants.VIEW_HEIGHT/2);
+        setColor(ColorTheme.getColor(MazeColors.BACKGROUND_BOTTOM,percentToExit).toArgb());
+        addFilledRectangle(0, Constants.VIEW_HEIGHT/2, Constants.VIEW_WIDTH, Constants.VIEW_HEIGHT/2);
     }
 
     @Override
@@ -74,12 +78,30 @@ public class MazePanel extends View implements P5Panel {
 
     @Override
     public void addFilledPolygon(int[] xPoints, int[] yPoints, int nPoints) {
-        //TODO
+        paintbrush.setStyle(Paint.Style.FILL);
+
+        Path path = new Path();
+        path.moveTo(xPoints[0], yPoints[0]);
+        for (int i = 1; i < nPoints; i++) {
+            path.lineTo(xPoints[i], yPoints[i]);
+        }
+        path.lineTo(xPoints[0], yPoints[0]);
+
+        canvas.drawPath(path, paintbrush);
     }
 
     @Override
     public void addPolygon(int[] xPoints, int[] yPoints, int nPoints) {
-        //TODO
+        paintbrush.setStyle(Paint.Style.STROKE);
+
+        Path path = new Path();
+        path.moveTo(xPoints[0], yPoints[0]);
+        for (int i = 1; i < nPoints; i++) {
+            path.lineTo(xPoints[i], yPoints[i]);
+        }
+        path.lineTo(xPoints[0], yPoints[0]);
+
+        canvas.drawPath(path, paintbrush);
     }
 
     @Override
@@ -89,21 +111,22 @@ public class MazePanel extends View implements P5Panel {
 
     @Override
     public void addFilledOval(int x, int y, int width, int height) {
-
+        paintbrush.setStyle(Paint.Style.FILL);
+        canvas.drawOval((float)x, (float)y, (float)x + width, (float)y + height, paintbrush);
     }
 
     @Override
     public void addArc(int x, int y, int width, int height, int startAngle, int arcAngle) {
-
+        paintbrush.setStyle(Paint.Style.STROKE);
+        canvas.drawArc((float)x, (float)y, (float)x+width, (float)y + height, (float)startAngle, (float)arcAngle, false, paintbrush);
     }
 
     @Override
     public void addMarker(float x, float y, String str) {
-
+        canvas.drawText(str, x, y, paintbrush);
     }
 
     @Override
     public void setRenderingHint(P5RenderingHints hintKey, P5RenderingHints hintValue) {
-
     }
 }

@@ -34,7 +34,7 @@ public class PlayManuallyActivity extends AppCompatActivity {
         Button lookLeft = findViewById(R.id.left);
         Button lookRight = findViewById(R.id.right);
 
-        panel.addLine(0,100,1400,1000);
+        panel.addFilledPolygon(new int[]{100, 1500, 1000, 500}, new int[]{100, 800, 1500, 500}, 4);
         panel.commit();
 
 //        shortCut.setOnClickListener(new View.OnClickListener() {
