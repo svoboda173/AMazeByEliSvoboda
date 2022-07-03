@@ -106,6 +106,7 @@ public class MazePanel extends View implements P5Panel {
 
     @Override
     public void addLine(int startX, int startY, int endX, int endY) {
+        paintbrush.setStrokeWidth(10);
         canvas.drawLine((float) startX, (float) startY,(float) endX, (float) endY, paintbrush);
     }
 

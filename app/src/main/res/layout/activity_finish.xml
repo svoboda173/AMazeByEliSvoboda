@@ -12,6 +12,17 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+
+
+        <TextView
+            android:id="@+id/victory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="VICTORY! "
+            android:gravity="center"
+            android:layout_weight="4"
+            android:textSize="50sp" />
+
         <ImageView
             android:id="@+id/successImage"
             android:layout_width="350sp"
@@ -20,58 +31,52 @@
             app:srcCompat="@drawable/success2" />
 
         <TextView
-            android:id="@+id/victory"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="VICTORY! "
-            android:gravity="center"
-            android:textSize="50sp" />
-
-        <TextView
             android:id="@+id/youEscaped"
             android:layout_width="match_parent"
             android:layout_height="72dp"
             android:gravity="center"
+            android:layout_weight="1"
             android:text="You escaped. Well done."
             android:textSize="30sp" />
 
-        <TextView
-            android:id="@+id/distanceMinotaur"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:gravity="bottom|center"
-            android:text="Distance traveled by Minotaur:"
-            android:textSize="30sp" />
+<!--        <TextView-->
+<!--            android:id="@+id/distanceMinotaur"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="55dp"-->
+<!--            android:gravity="bottom|center"-->
+<!--            android:text="Distance traveled by Minotaur:"-->
+<!--            android:textSize="30sp" />-->
 
-        <TextView
-            android:id="@+id/MinotaurDist"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="xx meters"
-            android:textSize="30sp" />
+<!--        <TextView-->
+<!--            android:id="@+id/MinotaurDist"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:gravity="center"-->
+<!--            android:text="xx meters"-->
+<!--            android:textSize="30sp" />-->
 
-        <TextView
-            android:id="@+id/journeyLength"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Length of your journey:"
-            android:textSize="30sp" />
+<!--        <TextView-->
+<!--            android:id="@+id/journeyLength"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:gravity="center"-->
+<!--            android:text="Length of your journey:"-->
+<!--            android:textSize="30sp" />-->
 
-        <TextView
-            android:id="@+id/JourneyLength"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="xx steps"
-            android:textSize="30sp" />
+<!--        <TextView-->
+<!--            android:id="@+id/JourneyLength"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:gravity="center"-->
+<!--            android:text="xx steps"-->
+<!--            android:textSize="30sp" />-->
 
         <TextView
             android:id="@+id/hitBack"
             android:layout_width="match_parent"
             android:layout_height="154dp"
             android:gravity="center"
+            android:layout_weight="1"
             android:text="Tap the back button to re-enter the labyrinth, if you dare"
             android:textSize="30sp" />
     </LinearLayout>

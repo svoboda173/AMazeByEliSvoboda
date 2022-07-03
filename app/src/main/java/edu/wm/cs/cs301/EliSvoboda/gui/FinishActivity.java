@@ -21,8 +21,8 @@ public class FinishActivity extends AppCompatActivity {
         ImageView successImage = findViewById(R.id.successImage);
         TextView victory = findViewById(R.id.victory);
         TextView youEscaped = findViewById(R.id.youEscaped);
-        TextView minotaurDist = findViewById(R.id.MinotaurDist);
-        TextView journeyLength = findViewById(R.id.JourneyLength);
+//        TextView minotaurDist = findViewById(R.id.MinotaurDist);
+//        TextView journeyLength = findViewById(R.id.JourneyLength);
 
         Bundle b = getIntent().getExtras();
         stepsTaken = b.getInt("stepsTaken");
@@ -34,8 +34,8 @@ public class FinishActivity extends AppCompatActivity {
             victory.setText("DEFEAT...");
             youEscaped.setText("The Minotaur ate well tonight. Try again?");
         }
-
-        minotaurDist.setText(distFromMinotaur + " meters");
-        journeyLength.setText(stepsTaken + " steps");
+//
+//        minotaurDist.setText(distFromMinotaur + " meters");
+//        journeyLength.setText(stepsTaken + " steps");
     }
 }

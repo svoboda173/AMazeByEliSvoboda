@@ -10,12 +10,15 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CheckedTextView;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import edu.wm.cs.cs301.EliSvoboda.R;
+import edu.wm.cs.cs301.EliSvoboda.generation.Maze;
 
 public class PlayManuallyActivity extends AppCompatActivity {
 
+    int stepsTaken = 0;
+    int distFromMinotaur = 0;
+    StatePlaying statePlaying;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         int stepsTaken = 0;
@@ -33,9 +36,12 @@ public class PlayManuallyActivity extends AppCompatActivity {
         Button jump = findViewById(R.id.jump);
         Button lookLeft = findViewById(R.id.left);
         Button lookRight = findViewById(R.id.right);
+        statePlaying = new StatePlaying();
 
-        panel.addFilledPolygon(new int[]{100, 1500, 1000, 500}, new int[]{100, 800, 1500, 500}, 4);
-        panel.commit();
+
+
+        statePlaying.setMaze(GeneratingActivity.maze);
+        statePlaying.start(panel);
 
 //        shortCut.setOnClickListener(new View.OnClickListener() {
 //            /**
@@ -58,8 +64,8 @@ public class PlayManuallyActivity extends AppCompatActivity {
              * Toggle map
              */
             public void onClick(View v) {
+                PlayManuallyActivity.this.handleUserInput(Constants.UserInput.TOGGLELOCALMAP, 0);
                 Log.v("PlayManuallyActivity", "You toggled the map");
-                Toast.makeText(PlayManuallyActivity.this, "You toggled the map", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -68,8 +74,8 @@ public class PlayManuallyActivity extends AppCompatActivity {
              * Move character forward
              */
             public void onClick(View v) {
+                PlayManuallyActivity.this.handleUserInput(Constants.UserInput.UP, 0);
                 Log.v("PlayManuallyActivity", "You moved forward");
-                Toast.makeText(PlayManuallyActivity.this, "You moved forward", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -78,8 +84,8 @@ public class PlayManuallyActivity extends AppCompatActivity {
              * Jump character over wall in front of them
              */
             public void onClick(View v) {
+                PlayManuallyActivity.this.handleUserInput(Constants.UserInput.JUMP, 0);
                 Log.v("PlayManuallyActivity", "You jumped over the wall");
-                Toast.makeText(PlayManuallyActivity.this, "You jumped over the wall", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -88,8 +94,8 @@ public class PlayManuallyActivity extends AppCompatActivity {
              * Rotate view left
              */
             public void onClick(View v) {
+                PlayManuallyActivity.this.handleUserInput(Constants.UserInput.LEFT, 0);
                 Log.v("PlayManuallyActivity", "You looked left");
-                Toast.makeText(PlayManuallyActivity.this, "You looked left", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -98,8 +104,8 @@ public class PlayManuallyActivity extends AppCompatActivity {
              * Rotate view right
              */
             public void onClick(View v) {
+                PlayManuallyActivity.this.handleUserInput(Constants.UserInput.RIGHT, 0);
                 Log.v("PlayManuallyActivity", "You looked right");
-                Toast.makeText(PlayManuallyActivity.this, "You looked right", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -109,26 +115,37 @@ public class PlayManuallyActivity extends AppCompatActivity {
      * Respond to the user clicking on "reveal maze?", revealing the entire maze on the map display rather than just the nearest walls
      */
     public void revealMazeClicked(View view) {
-        boolean checked = ((CheckedTextView) view).isChecked();
-        if (checked) {
-            Log.v("PlayManuallyActivity", "You can now see the whole maze on your map");
-            Toast.makeText(PlayManuallyActivity.this, "You can now see the whole maze on your map", Toast.LENGTH_SHORT).show();
-        } else {
-            Log.v("PlayManuallyActivity", "You can no longer see the whole maze on your map");
-            Toast.makeText(PlayManuallyActivity.this, "You can no longer see the whole maze on your map", Toast.LENGTH_SHORT).show();
-        }
+
+        PlayManuallyActivity.this.handleUserInput(Constants.UserInput.TOGGLEFULLMAP, 0);
+        Log.v("PlayManuallyActivity", "You toggled seeing the full maze.");
+
     }
     /**
      * Respond to the user clicking on "reveal path out?", revealing the yellow solution path out on their map
      */
     public void revealPathClicked(View view) {
-        boolean checked = ((CheckedTextView) view).isChecked();
-        if (checked) {
-            Log.v("PlayManuallyActivity", "You can now see the path out on your map");
-            Toast.makeText(PlayManuallyActivity.this, "You can now see the path out on your map", Toast.LENGTH_SHORT).show();
-        } else {
-            Log.v("PlayManuallyActivity", "You can no longer see the path out on your map");
-            Toast.makeText(PlayManuallyActivity.this, "You can no longer see the path out on your map", Toast.LENGTH_SHORT).show();
+        PlayManuallyActivity.this.handleUserInput(Constants.UserInput.TOGGLESOLUTION, 0);
+        Log.v("PlayManuallyActivity", "You toggled seeing the path out of your map");
+
+    }
+
+    public boolean handleUserInput(Constants.UserInput userInput, int value) {
+        Boolean ret =  statePlaying.handleUserInput(userInput, value);
+        if (statePlaying.isOutside(statePlaying.px, statePlaying.py)) {
+            switchFromPlayingToWinning();
         }
+        return ret;
+    }
+
+    public void switchFromPlayingToWinning () {
+            Intent intent = new Intent(PlayManuallyActivity.this, FinishActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putInt("stepsTaken", stepsTaken);
+            bundle.putInt("distFromMinotaur", distFromMinotaur);
+            bundle.putBoolean("escaped", true);
+            intent.putExtras(bundle);
+            startActivity(intent);
+            finish();
+
     }
 }

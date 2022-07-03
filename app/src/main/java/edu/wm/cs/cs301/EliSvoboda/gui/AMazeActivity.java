@@ -31,6 +31,9 @@ public class AMazeActivity extends AppCompatActivity implements AdapterView.OnIt
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        ColorTheme.setColorTheme(ColorTheme.ColorThemeSelection.ADVANCED);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Button escapeButton = findViewById(R.id.escapeButton);
@@ -39,7 +42,7 @@ public class AMazeActivity extends AppCompatActivity implements AdapterView.OnIt
         Spinner generationSpinner = findViewById(R.id.generationSpinner);
         Spinner modeSpinner = findViewById(R.id.modeSpinner);
         Button retryButton = findViewById(R.id.retryButton);
-        sharedPref = AMazeActivity.this.getPreferences(Context.MODE_PRIVATE);
+        sharedPref = this.getPreferences(Context.MODE_PRIVATE);
         editor = sharedPref.edit();
         rand = new Random();
 
@@ -67,7 +70,11 @@ public class AMazeActivity extends AppCompatActivity implements AdapterView.OnIt
                 }
                 encoded += 100 * currentLevel;
 
+
                 seed = sharedPref.getInt(String.valueOf(encoded), rand.nextInt());
+
+                Log.v("AMazeActivity", "retry clicked. Encoded value: "+encoded + ". Seed value: "+ seed);
+
 
                 editor.putInt(String.valueOf(encoded), seed);
                 editor.apply();
@@ -102,6 +109,7 @@ public class AMazeActivity extends AppCompatActivity implements AdapterView.OnIt
                         break;
                 }
                 encoded += 100 * currentLevel;
+                Log.v("AMazeActivity", "escape clicked. Encoded value: "+encoded + ". Seed value: "+ seed);
                 editor.putInt(String.valueOf(encoded), seed);
                 editor.apply();
 
@@ -131,7 +139,6 @@ public class AMazeActivity extends AppCompatActivity implements AdapterView.OnIt
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 Log.v("AMazeActivity", "You changed the size of the maze to " + currentLevel);
-                Toast.makeText(AMazeActivity.this, "You changed the size of the maze to " + currentLevel, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -154,18 +161,15 @@ public class AMazeActivity extends AppCompatActivity implements AdapterView.OnIt
         if (checked) {
             includeRooms = true;
             Log.v("AMazeActivity", "You enabled room generation");
-            Toast.makeText(AMazeActivity.this, "You enabled room generation", Toast.LENGTH_SHORT).show();
         } else {
             includeRooms = false;
             Log.v("AMazeActivity", "You disabled room generation");
-            Toast.makeText(AMazeActivity.this, "You disabled room generation", Toast.LENGTH_SHORT).show();
         }
     }
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         Log.v("AMazeActivity", "You changed your selection to " + adapterView.getItemAtPosition(i));
-        Toast.makeText(AMazeActivity.this, "You changed your selection to " + adapterView.getItemAtPosition(i), Toast.LENGTH_SHORT).show();
     }
 
     @Override

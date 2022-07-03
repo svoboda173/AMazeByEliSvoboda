@@ -25,7 +25,7 @@ public class ColorTheme {
 	private static final Color greenWM = Color.valueOf(Color.parseColor("#115740"));
 	private static final Color goldWM = Color.valueOf(Color.parseColor("#916f41"));
 	private static final Color blackWM = Color.valueOf(Color.parseColor("#222222"));
-	private static final Color yellowWM = Color.valueOf(Color.parseColor("#FFFF99"));
+	private static final Color yellowWM = Color.valueOf(Color.parseColor("#cd1102"));
 
 	//specifically for CompassRose.java, corresponding enum values have prefix COMPASSROSE_
 	// fixed configuration for arms
@@ -253,7 +253,7 @@ public class ColorTheme {
 		@Override
 		Color getColor(MazeColors color, float percentToExit) {
 			Color result = (MazeColors.BACKGROUND_TOP == color)?
-					blend(yellowWM, goldWM, percentToExit) : 
+					yellowWM :
 						blend(Color.valueOf(Color.LTGRAY), greenWM, percentToExit);
 			LOGGER.log(Level.FINEST, "given:" + color + ", returns color: " + result);
 	        return result;
