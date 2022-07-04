@@ -19,7 +19,7 @@ import edu.wm.cs.cs301.EliSvoboda.generation.Maze;
 public class PlayAnimationActivity extends AppCompatActivity {
     int stepsTaken = 0;
     int distFromMinotaur = 0;
-    boolean escaped;
+    boolean escaped = true;
     private BasicRobot robot;
     private RobotDriver driver;
     private String mode;
@@ -120,9 +120,10 @@ public class PlayAnimationActivity extends AppCompatActivity {
         });
 
         try {
-            getDriver().drive2Exit();
+            escaped = getDriver().drive2Exit();
         } catch (Exception e) {
         }
+        switchFromPlayingToWinning();
     }
     /**
      * Respond to the user clicking on "reveal maze?", revealing the entire maze on the map display rather than just the nearest walls

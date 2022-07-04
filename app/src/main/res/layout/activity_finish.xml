@@ -55,21 +55,21 @@
 <!--            android:text="xx meters"-->
 <!--            android:textSize="30sp" />-->
 
-<!--        <TextView-->
-<!--            android:id="@+id/journeyLength"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:gravity="center"-->
-<!--            android:text="Length of your journey:"-->
-<!--            android:textSize="30sp" />-->
+        <TextView
+            android:id="@+id/journeyLength"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Length of your journey:"
+            android:textSize="30sp" />
 
-<!--        <TextView-->
-<!--            android:id="@+id/JourneyLength"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:gravity="center"-->
-<!--            android:text="xx steps"-->
-<!--            android:textSize="30sp" />-->
+        <TextView
+            android:id="@+id/JourneyLength"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="xx steps"
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/hitBack"

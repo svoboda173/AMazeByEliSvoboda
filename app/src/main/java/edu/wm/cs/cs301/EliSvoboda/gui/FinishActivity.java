@@ -22,7 +22,7 @@ public class FinishActivity extends AppCompatActivity {
         TextView victory = findViewById(R.id.victory);
         TextView youEscaped = findViewById(R.id.youEscaped);
 //        TextView minotaurDist = findViewById(R.id.MinotaurDist);
-//        TextView journeyLength = findViewById(R.id.JourneyLength);
+        TextView journeyLength = findViewById(R.id.JourneyLength);
 
         Bundle b = getIntent().getExtras();
         stepsTaken = b.getInt("stepsTaken");
@@ -36,6 +36,6 @@ public class FinishActivity extends AppCompatActivity {
         }
 //
 //        minotaurDist.setText(distFromMinotaur + " meters");
-//        journeyLength.setText(stepsTaken + " steps");
+        journeyLength.setText(stepsTaken + " steps");
     }
 }

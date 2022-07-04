@@ -140,6 +140,7 @@ public class PlayManuallyActivity extends AppCompatActivity {
     public void switchFromPlayingToWinning () {
             Intent intent = new Intent(PlayManuallyActivity.this, FinishActivity.class);
             Bundle bundle = new Bundle();
+            stepsTaken = statePlaying.getOdomoterReading();
             bundle.putInt("stepsTaken", stepsTaken);
             bundle.putInt("distFromMinotaur", distFromMinotaur);
             bundle.putBoolean("escaped", true);

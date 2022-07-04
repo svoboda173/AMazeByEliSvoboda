@@ -33,8 +33,6 @@ public class BasicRobot implements Robot {
 	
 	float[] batteryLevel = {INITIALBATTERYLEVEL};
 	
-	int odometer = 0;
-	
 	private boolean hasStopped = false;
 
 	public void setState(State state) {
@@ -102,13 +100,13 @@ public class BasicRobot implements Robot {
 	@Override
 	public int getOdometerReading() {
 		// Return value of odometer instance variable
-		return odometer;
+		return ((StatePlaying)currentState).getOdomoterReading();
 	}
 
 	@Override
 	public void resetOdometer() {
 		// Set value of odometer instance variable to zero
-		odometer = 0;
+		((StatePlaying)currentState).resetOdometer();
 	}
 
 	@Override
@@ -188,7 +186,6 @@ public class BasicRobot implements Robot {
 						&& getBatteryLevel() >= STEPFORWARDENERGYUSED) {
 					currentState.handleUserInput(UserInput.UP, 0);
 					System.out.println("moved forward 1 unit. Battery level: " + getBatteryLevel());
-					odometer++;
 					batteryLevel[0] -= STEPFORWARDENERGYUSED;
 				} else {
 					hasStopped = true;
@@ -224,7 +221,6 @@ public class BasicRobot implements Robot {
 			cur[1] += arr[1];
 			if (getBatteryLevel() >= STEPFORWARDENERGYUSED && GeneratingActivity.maze.isValidPosition(cur[0],cur[1])) {
 				currentState.handleUserInput(UserInput.JUMP, 0);
-				odometer++;
 				batteryLevel[0] -= STEPFORWARDENERGYUSED;
 			} else {
 				hasStopped = true;

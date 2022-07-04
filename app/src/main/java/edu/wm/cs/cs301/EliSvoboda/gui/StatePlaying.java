@@ -36,6 +36,8 @@ import edu.wm.cs.cs301.EliSvoboda.generation.Maze;
  * Refactored by Peter Kemper
  */
 public class StatePlaying implements State {
+
+    int odometer = 0;
 	/**
 	 * The logger is used to track execution and report issues.
 	 * Collaborators are the UI and the MazeFactory.
@@ -68,7 +70,7 @@ public class StatePlaying implements State {
     /**
      * The panel is the capability to draw on the screen.
      */
-    private MazePanel panel;
+    public MazePanel panel;
 
 
     /**
@@ -259,6 +261,7 @@ public class StatePlaying implements State {
             break;
         case UP: // move forward
         	LOGGER.fine("Move 1 step forward");
+            odometer++;
             walk(1);
             // check termination, did we leave the maze?
             /*if (isOutside(px,py)) {
@@ -287,6 +290,7 @@ public class StatePlaying implements State {
             break;
         case JUMP: // make a step forward even through a wall
         	LOGGER.fine("Jump 1 step forward");
+            odometer++;
             // go to position if within maze
         	int[] tmpDxDy = cd.getDxDyDirection();
         	if (maze.isValidPosition(px + tmpDxDy[0], py + tmpDxDy[1])) {
@@ -501,6 +505,15 @@ public class StatePlaying implements State {
     		cr.paintComponent(panel);
     	}
     	panel.commit();
+    }
+
+    public int getOdomoterReading() {
+        return odometer;
+    }
+
+    public void resetOdometer() {
+        // Set value of odometer instance variable to zero
+        odometer = 0;
     }
  
     /////////////////////// Methods for debugging ////////////////////////////////

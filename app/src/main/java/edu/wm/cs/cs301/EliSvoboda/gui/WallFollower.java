@@ -1,5 +1,7 @@
 package edu.wm.cs.cs301.EliSvoboda.gui;
 
+import android.os.Handler;
+
 import edu.wm.cs.cs301.EliSvoboda.generation.Maze;
 import edu.wm.cs.cs301.EliSvoboda.gui.Robot.Direction;
 import edu.wm.cs.cs301.EliSvoboda.gui.Robot.Turn;
@@ -21,7 +23,8 @@ import edu.wm.cs.cs301.EliSvoboda.gui.Robot.Turn;
  */
 
 public class WallFollower implements RobotDriver {
-	
+	Handler handler = new Handler();
+
 	Robot robot;
 	
 	Maze maze;
@@ -46,9 +49,13 @@ public class WallFollower implements RobotDriver {
 		 * We've reached the exit! return true
 		 * 
 		 */
-		while (drive1Step2Exit()) {
+
+		while(drive1Step2Exit()) {
+
 		}
-		return true;
+
+
+		return robot.isAtExit();
 	}
 
 	@Override
